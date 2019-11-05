@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>IIIT Delhi ExplorAR</title>
+    <script src='https://aframe.io/releases/0.9.2/aframe.min.js'></script>
+    <script src='https://raw.githack.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js'></script>
+    <script>
+        THREEx.ArToolkitContext.baseURL = 'https://raw.githack.com/jeromeetienne/ar.js/master/three.js/'
+    </script>
+</head>
+
+<!-- <link rel="stylesheet" href="../../src/location-based/stylesheets/index.css"> -->
+
+<body style='margin: 0; overflow: hidden;'>
+    <div id="splash" style="width: 100vw; height:100vh; margin: auto;"></div>
+    
+    <a-scene
+        cursor='rayOrigin: mouse; fuse: true; fuseTimeout: 0;'
+        raycaster="objects: [gps-entity-place];"
+        vr-mode-ui="enabled: false"
+        embedded
+        arjs='sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960; debugUIEnabled: false;'>
+
+        <a-camera gps-camera="minDistance: 20;" rotation-reader>
+        </a-camera>
+    </a-scene>
+
+    <!-- Trigger/Open The Modal -->
+    <div class="footer">
+
+      <button ><i class="material-icons">home</i></button>
+      <button id="helpBtn"><i class="material-icons">help</i></button>
+    </div>
+
+    <!-- The Modal -->
+    <div id="helpModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="close" style="font-size: 28px;font-weight: bold;">&times;</span>
+          <h2>NavigatAR Guide</h2>
+        </div>
+        <div class="modal-body">
+          <h1 style="color: grey; font-size: 25px; text-align: center;">Pan over the campus buildings</h1>
+          <img src="movement.gif" style="display: block; margin-left: auto; margin-right: auto; width: 100px;">
+        </div>
+        <div class="modal-footer">
+          <button class="close">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- modal about a place -->
+    <div id="abtPlaceModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="abtClose" style="font-size: 28px;font-weight: bold;">&times;</span>
+          <h2 id="placeName">Place A</h2>
+        </div>
+        <div class="modal-body">
+            <div id="latLong"></div>
+          
+        </div>
+        <div class="modal-footer">
+          <button class="abtClose">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="places.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+</body>
